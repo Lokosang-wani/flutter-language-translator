@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:language_translator/language_translation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,24 +14,26 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Language Translator',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: Homepage(),
+      home: LanguageTranslation(),
     );
   }
 }
 
-class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+// class Homepage extends StatefulWidget {
+//   const Homepage({super.key});
 
-  @override
-  State<Homepage> createState() => _HomepageState();
-}
+//   @override
+//   State<Homepage> createState() => _HomepageState();
+// }
 
-class _HomepageState extends State<Homepage> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
+// class _HomepageState extends State<Homepage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Language Translator"),
+//         backgroundColor: Colors.blue,
+//       ),
+//     );
+//   }
+// }
