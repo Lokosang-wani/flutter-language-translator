@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:translator/translator.dart';
 
 class LanguageTranslation extends StatefulWidget {
   const LanguageTranslation({super.key});
@@ -13,6 +14,32 @@ class _LanguageTranslationState extends State<LanguageTranslation> {
   var destinationLanguage = "To";
   var output = "";
   TextEditingController languageContoller = TextEditingController();
+
+  void translate(String src, String dest, String inupt) async {
+    GoogleTranslator translator = new GoogleTranslator();
+    var translation = await translator.translate(inupt, from: src, to: dest);
+    setState(() {
+      output = translation.text.toString();
+    });
+    if (src == '--' || dest == '--') {
+      setState(() {
+        output = "Fail to translate";
+      });
+    }
+  }
+
+  String getLanguageCode(String language) {
+    if (language == "English") {
+      return "en";
+    } else if (language == "Arabic") {
+      return "ar";
+    } else if (language == "Amharic") {
+      return "am";
+    } else if (language == "Kinyarwanda") {
+      return "rw";
+    }
+    return "--";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,10 +143,36 @@ class _LanguageTranslationState extends State<LanguageTranslation> {
                   },
                 ),
               ),
-              Padding(padding: EdgeInsets.all(8),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(primary: Color(0xff2b3c5a)),
-                onPressed: (){}, child: Text('Translate')),)
+              Padding(
+                padding: EdgeInsets.all(8),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xffffffff),
+                  ),
+                  onPressed: () {
+                    translate(
+                      getLanguageCode(originLanguage),
+                      getLanguageCode(destinationLanguage),
+                      languageContoller.text.toString(),
+                    );
+                  },
+                  child: Text(
+                    'Translate',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              Text(
+                "\n$output",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              SizedBox(height: 60),
+              Text('Made by Felix', style: TextStyle(color: Colors.white)),
             ],
           ),
         ),
