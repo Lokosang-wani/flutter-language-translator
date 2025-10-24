@@ -16,7 +16,7 @@ class _LanguageTranslationState extends State<LanguageTranslation> {
   TextEditingController languageContoller = TextEditingController();
 
   void translate(String src, String dest, String inupt) async {
-    GoogleTranslator translator = new GoogleTranslator();
+    GoogleTranslator translator = GoogleTranslator();
     var translation = await translator.translate(inupt, from: src, to: dest);
     setState(() {
       output = translation.text.toString();
@@ -165,10 +165,11 @@ class _LanguageTranslationState extends State<LanguageTranslation> {
               SizedBox(height: 20),
               Text(
                 "\n$output",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  fontSize: 16,
                 ),
               ),
               SizedBox(height: 60),
