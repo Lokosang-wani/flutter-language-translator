@@ -13,7 +13,7 @@ class _LanguageTranslationState extends State<LanguageTranslation> {
   var originLanguage = "From";
   var destinationLanguage = "To";
   var output = "";
-  TextEditingController languageContoller = TextEditingController();
+  TextEditingController languageController = TextEditingController();
 
   void translate(String src, String dest, String inupt) async {
     GoogleTranslator translator = GoogleTranslator();
@@ -134,7 +134,7 @@ class _LanguageTranslationState extends State<LanguageTranslation> {
                     ),
                     errorStyle: TextStyle(color: Colors.red, fontSize: 15),
                   ),
-                  controller: languageContoller,
+                  controller: languageController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter text to translate';
@@ -153,7 +153,7 @@ class _LanguageTranslationState extends State<LanguageTranslation> {
                     translate(
                       getLanguageCode(originLanguage),
                       getLanguageCode(destinationLanguage),
-                      languageContoller.text.toString(),
+                      languageController.text.toString(),
                     );
                   },
                   child: Text(
